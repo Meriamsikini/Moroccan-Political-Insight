@@ -70,7 +70,7 @@ Moroccan-Political-Insight/
   - Saves the cleaned data to **HDFS** in JSON format.  
 
 ### 3️⃣ Exports
-- `cleaned_tweets.json` is first Export cleaned JSON from HDFS (Hortonworks Sandbox VM) to local VM using :
+- `cleaned_tweets.json` first exports the cleaned JSON from HDFS (Hortonworks Sandbox VM) to local VM using :
  ``` hdfs dfs -get /user/root/cleaned_tweets_output_json/part-00000-*.json /root/cleaned_tweets.json```
 - Then, the file is copied from the Hadoop VM to Windows using WinSCP.
 - This ensures the cleaned dataset is available locally for LLM classification.
@@ -121,7 +121,7 @@ LLM Classification (Mistral 7B, in Colab)  → classified/classified_tweets.csv
 Parallel Sentiment Analysis (Java)
       │
       ▼
-Streamlit Dashboard (dashboard_app.py)
+Streamlit Dashboard (dapp.py)
 ```
 ---
 ## 🛠️ Tech Stack
