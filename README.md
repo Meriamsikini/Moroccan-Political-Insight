@@ -15,7 +15,6 @@ This project provides insights into Moroccan political discussions on social med
 5. **Parallel sentiment analysis (Java)**: Positive, negative, and neutral tweet counts are computed, with top keywords identified using a parallelized Java implementation.  
 6. **Interactive dashboard**: A Streamlit app visualizes trends, keyword frequencies, and classification results.  
 
-> **Note:** Unlike traditional NLP approaches, the project does **not** rely on regex or handcrafted NLP pipelines. Classification is directly performed by the Mistral 7B LLM.
 
 ---
 
@@ -25,32 +24,33 @@ Moroccan-Political-Insight/
 │── README.md
 │── requirements.txt
 │
-├── producer/ # Data ingestion
-│ └── firebase_producer.py # Reads tweets from Firebase and sends them to Kafka
+├── producer/                     # Data ingestion
+│   └── firebase_producer.py
 │
-├── streaming/ # Real-time cleaning
-│ └── stream_to_hdfs.py # Spark Streaming job to clean tweets and save to HDFS
+├── streaming/                    # Real-time cleaning
+│   └── stream_to_hdfs.py
 │
-├── data/ # Raw input data
-│ └── tweets.json # Original collected tweets
+├── data/                         # Raw input data
+│   └── tweets.json
 │
-├── exports/ # Data exported from Hadoop
-│ └── cleaned_tweets.json # Cleaned tweets exported from HDFS
+├── exports/                      # Data exported from Hadoop
+│   └── cleaned_tweets.json
 │
-├── classification/ # AI classification
-│ └── mistral_classification.ipynb # LLM classification using Mistral 7B
+├── LLM_classification/               # AI classification (Colab)
+│   └── mistral_classification.ipynb
 │
-├── parallel_analysis/ # Java sentiment analysis
-│ ├── Tweet.java
-│ ├── AnalysisResult.java
-│ ├── TweetAnalyzer.java
-│ └── Main.java
+├── parallel_analysis/             # Java sentiment analysis
+│   ├── Tweet.java
+│   ├── AnalysisResult.java
+│   ├── TweetAnalyzer.java
+│   └── Main.java
 │
-├── dashboard/ # Visualization
-│ └── dashboard_app.py # Streamlit dashboard to explore trends and stats
+├── dashboard/                    # Visualization
+│   └── app.py
 │
-└── commands/ # Scripts & commands
-└── hadoop_commands.txt # Step-by-step commands for Zookeeper, Kafka, Spark, HDFS
+└── commands/                     # Hadoop, Kafka & Spark commands
+    └── hadoop_commands.txt
+
 ```
 
 ---
@@ -113,7 +113,7 @@ Spark Streaming → HDFS (cleaned_tweets.json)
 Export from HDFS → Local Hadoop VM → Windows (WinSCP)
       │
       ▼
-LLM Classification (Mistral 7B)
+LLM Classification (Mistral 7B, in Colab)
       │
       ▼
 Parallel Sentiment Analysis (Java)
@@ -121,3 +121,20 @@ Parallel Sentiment Analysis (Java)
       ▼
 Streamlit Dashboard (dashboard_app.py)
 ```
+---
+## 🛠️ Tech Stack
+
+- **Data sources & ingestion**: Firebase Realtime Database
+
+- **Streaming & Processing**: Kafka, Apache Spark Streaming, Hadoop HDFS
+
+- **LLM Classification**: Mistral 7B (executed in Google Colab)
+
+- **Parallel Analysis**: Java (multithreaded sentiment analysis)
+
+- **Visualization**: Streamlit
+
+- **Utilities** : WinSCP (for file transfer from Hadoop VM to Windows)
+##  👩‍💻 Author
+
+**Meriam Sikini**
