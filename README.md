@@ -70,7 +70,7 @@ Moroccan-Political-Insight/
   - Saves the cleaned data to **HDFS** in JSON format.  
 
 ### 3️⃣ Exports
-- `cleaned_tweets.json` is first exported from HDFS to the local Hadoop VM using Hadoop commands:
+- `cleaned_tweets.json` is first Export cleaned JSON from HDFS (Hortonworks Sandbox VM) to local VM using :
  ``` hdfs dfs -get /user/root/cleaned_tweets_output_json/part-00000-*.json /root/cleaned_tweets.json```
 - Then, the file is copied from the Hadoop VM to Windows using WinSCP.
 - This ensures the cleaned dataset is available locally for LLM classification.
@@ -137,6 +137,20 @@ Streamlit Dashboard (dashboard_app.py)
 - **Visualization**: Streamlit
 
 - **Utilities** : WinSCP (for file transfer from Hadoop VM to Windows)
+
+ ---
+
+### 📝 Note on the Hadoop Environment
+
+- The entire Big Data pipeline was executed in **Hortonworks Sandbox (Hadoop VM)**.  
+- Tweets collected from **Firebase** were **streamed in real-time to Kafka** on the Sandbox.  
+- **Spark Streaming** processed these tweets in the Sandbox and stored them in **HDFS**.  
+- The cleaned JSON file (`cleaned_tweets.json`) was then **exported from HDFS to the local file system of the Sandbox**, and subsequently transferred to **Windows** via **WinSCP** for LLM classification in Colab.  
+
+---
+⚠️ Note: LLM classification is executed in Google Colab, which provides GPU acceleration for the Mistral 7B model.
+---
+  
 ##  👩‍💻 Author
 
 **Meriam Sikini**
