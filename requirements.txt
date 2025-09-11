@@ -1,0 +1,9 @@
+firebase-admin==6.1.1
+kafka-python==2.2.0
+pyspark==3.4.1
+pandas==2.1.0
+torch==2.2.0
+transformers==4.42.2
+tqdm==4.65.0
+streamlit==1.26.0
+bitsandbytes==0.41.0
