@@ -39,6 +39,8 @@ Moroccan-Political-Insight/
 ├── LLM_classification/               # AI classification (Colab)
 │   └── mistral_classification.ipynb
 │
+├── classified/                   # Tweets classified by LLM (Mistral 7B)
+│   └── classified_tweets.csv
 ├── parallel_analysis/             # Java sentiment analysis
 │   ├── Tweet.java
 │   ├── AnalysisResult.java
@@ -113,7 +115,7 @@ Spark Streaming → HDFS (cleaned_tweets.json)
 Export from HDFS → Local Hadoop VM → Windows (WinSCP)
       │
       ▼
-LLM Classification (Mistral 7B, in Colab)
+LLM Classification (Mistral 7B, in Colab)  → classified/classified_tweets.csv
       │
       ▼
 Parallel Sentiment Analysis (Java)
