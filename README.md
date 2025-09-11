@@ -1,6 +1,6 @@
 # 🟢 Moroccan-Political-Insight
 
-**Moroccan-Political-Insight** is a comprehensive project designed to analyze and visualize political opinions and trends in Morocco. It implements a **real-time Big Data pipeline**, leverages a **large language model (Mistral 7B)** for tweet classification, and performs **parallel sentiment analysis in Java**. Finally, the results are presented in an interactive **Streamlit dashboard**.  
+**Moroccan-Political-Insight** is a comprehensive project designed to analyze and visualize political opinions and trends in Morocco. It implements a **real-time Big Data pipeline**, leverages a **large language model (Mistral 7B)** for tweet classification. Finally, the results are presented in an interactive **Streamlit dashboard**.  
 
 ---
 
@@ -12,8 +12,8 @@ This project provides insights into Moroccan political discussions on social med
 2. **Real-time streaming & cleaning**: Data is streamed from Firebase to Kafka, processed with Spark Streaming, and stored in Hadoop HDFS.  
 3. **Export cleaned data**: Cleaned JSON tweets are exported from Hadoop to local storage using WinSCP.  
 4. **AI-based classification**: Tweets are classified using the **Mistral 7B** model to detect support or criticism toward political parties.  
-5. **Parallel sentiment analysis (Java)**: Positive, negative, and neutral tweet counts are computed, with top keywords identified using a parallelized Java implementation.  
-6. **Interactive dashboard**: A Streamlit app visualizes trends, keyword frequencies, and classification results.  
+5. **Interactive dashboard**: A Streamlit app visualizes trends, keyword frequencies, and classification results.  
+ 
 
 
 ---
@@ -41,11 +41,6 @@ Moroccan-Political-Insight/
 │
 ├── classified/                   # Tweets classified by LLM (Mistral 7B)
 │   └── classified_tweets.csv
-├── parallel_analysis/             # Java sentiment analysis
-│   ├── Tweet.java
-│   ├── AnalysisResult.java
-│   ├── TweetAnalyzer.java
-│   └── Main.java
 │
 ├── dashboard/                    # Visualization
 │   └── app.py
@@ -80,19 +75,14 @@ Moroccan-Political-Insight/
 - Uses **Mistral 7B LLM** for classification into political labels (pro/contre parties).  
 - Generates a CSV with `tweet` and `classe` columns.
 
-### 5️⃣ Parallel Analysis: Java
-- Computes **positive, negative, and neutral tweet counts** in parallel.  
-- Extracts top keywords for positive and negative tweets.  
-- Classes: `Tweet`, `TweetAnalyzer`, `AnalysisResult`, and `Main`.
-
-### 6️⃣ Dashboard: `dashboard_app.py`
+### 5️⃣ Dashboard: `app.py`
 - Streamlit-based interactive dashboard.  
 - Visualizes:
   - Tweet distribution by political class.  
-  - Top keywords in positive/negative tweets.  
-  - Interactive trend graphs.
+  - Top keywords in positive/negative tweets.
+  - - Interactive trend graphs. 
 
-### 7️⃣ Commands: `hadoop_commands.txt`
+### 6️⃣ Commands: `hadoop_commands.txt`
 - Provides **step-by-step commands** for:
   - Starting Zookeeper and Kafka.  
   - Creating Kafka topics.  
@@ -118,10 +108,7 @@ Export from HDFS → Local Hadoop VM → Windows (WinSCP)
 LLM Classification (Mistral 7B, in Colab)  → classified/classified_tweets.csv
       │
       ▼
-Parallel Sentiment Analysis (Java)
-      │
-      ▼
-Streamlit Dashboard (dapp.py)
+Streamlit Dashboard (app.py)
 ```
 ---
 ## 🛠️ Tech Stack
@@ -131,8 +118,6 @@ Streamlit Dashboard (dapp.py)
 - **Streaming & Processing**: Kafka, Apache Spark Streaming, Hadoop HDFS
 
 - **LLM Classification**: Mistral 7B (executed in Google Colab)
-
-- **Parallel Analysis**: Java (multithreaded sentiment analysis)
 
 - **Visualization**: Streamlit
 
