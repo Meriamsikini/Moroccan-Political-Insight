@@ -1,0 +1,55 @@
+🗂️ Commandes Hadoop, Spark & Kafka utilisées dans le projet
+🚀 Ordre d’exécution des commandes
+
+1- Démarrer Zookeeper
+
+cd /usr/hdp/current/kafka-broker/config
+./zookeeper-server-start.sh ../config/zookeeper.properties
+
+
+==> Lance le service Zookeeper, nécessaire pour gérer Kafka.
+
+2- Démarrer Kafka
+
+cd /usr/hdp/current/kafka-broker/config
+./kafka-server-start.sh ../config/server.properties
+
+
+==> Démarre le broker Kafka qui écoutera sur le port 6667.
+
+3- Créer un topic Kafka nommé json-topic
+
+./kafka-topics.sh --create --zookeeper sandbox-hdp.hortonworks.com:2181 \
+  --replication-factor 1 --partitions 1 --topic json-topic
+
+
+==> Crée le topic qui recevra les données depuis Firebase.
+
+4- Écrire le script PySpark spark_streaming_to_hdfs.py
+   vi spark_streaming_firebase_kafka.py 
+
+
+==> Ce script consomme depuis Kafka, nettoie les tweets et stocke dans HDFS.
+(Sauvegarder le fichier sur /root/spark_streaming_to_hdfs.py).
+
+5- Lancer le script Spark Streaming
+
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0 \
+  /root/spark_streaming_to_hdfs.py
+
+
+==> Spark lit le topic Kafka en continu et écrit les données nettoyées dans HDFS.
+
+6- Vérifier les données dans HDFS 
+hdfs dfs -ls /user/root/cleaned_tweets_output_json
+hdfs dfs -text /user/root/cleaned_tweets_output_json/part-*.json | head -n 20
+
+
+==> Permet de contrôler que Spark a bien produit des fichiers JSON dans HDFS.
+
+7- Exporter un fichier JSON nettoyé de HDFS vers local
+
+hdfs dfs -get /user/root/cleaned_tweets_output_json/part-00000-*.json /root/cleaned_tweets.json
+
+
+==> Copie un fichier nettoyé depuis HDFS vers le système de fichiers local.
