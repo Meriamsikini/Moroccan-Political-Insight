@@ -73,7 +73,7 @@ Moroccan-Political-Insight/
 ### 4️⃣ Classification: `mistral_classification.ipynb`
 - Loads **cleaned tweets**.  
 - Uses **Mistral 7B LLM** for classification into political labels (pro/contre parties).  
-- Generates a CSV with `tweet` and `classe` columns.
+- Generates a CSV with `tweet` , `classe` and `date` columns.
 
 ### 5️⃣ Dashboard: `app.py`
 - Streamlit-based interactive dashboard.  
